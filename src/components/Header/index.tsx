@@ -1,6 +1,7 @@
 import { HeaderContainer, Content, RightHeaderDiv, Location, Cart } from './styles'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
+import { OrderInfoContext } from "../../contexts/OrderInfoContext";
 import { useContext } from "react";
 
 import logoCoffee from '../../assets/logo-coffee.svg'
@@ -8,6 +9,8 @@ import { NavLink } from 'react-router-dom'
 
 export function Header() {
   const { shoppingCartItems } = useContext(ShoppingCartContext);
+  const { address } = useContext(OrderInfoContext);
+
 
   return (
     <HeaderContainer>
@@ -20,7 +23,7 @@ export function Header() {
         <RightHeaderDiv>
           <Location>
             <MapPin weight="fill" size={22} />
-            <span>Porto Alegre, RS</span>
+            <span>{`${address.city}, ${address.uf}`}</span>
           </Location>
 
           <NavLink to="/checkout" title="Checkout">
