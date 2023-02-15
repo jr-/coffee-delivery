@@ -38,6 +38,40 @@ export function Checkout() {
     changeAddressByInput(name, value);
   }
 
+  function checkIfAddressHasBeenFilledIn() {
+    const hasAddressBeenFilled = Object.entries(address).every(
+      ([key, value]) => {
+        if (key === "complement") return true;
+        return value.length > 0;
+      }
+    );
+
+    return hasAddressBeenFilled;
+  }
+
+  const totalPriceInCents = shoppingCartItems.reduce(
+    (accumulator, item) => accumulator + item.quantity * item.priceInCents,
+    0
+  );
+
+  const totalPriceInReal = new Intl.NumberFormat("pt-BR", {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+  }).format(totalPriceInCents / 100);
+
+  const deliveryFeeInCents = checkIfAddressHasBeenFilledIn() ? 350 : 0;
+  const deliveryFeeInReal = new Intl.NumberFormat("pt-BR", {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+  }).format(deliveryFeeInCents / 100);
+  const isDeliveryFeeMustAppear = deliveryFeeInCents > 0;
+
+  const totalOrderInCents = totalPriceInCents + deliveryFeeInCents;
+  const totalOrderInReal = new Intl.NumberFormat("pt-BR", {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+  }).format(totalOrderInCents / 100);
+
   return (
     <Container>
       <Content>
@@ -170,15 +204,15 @@ export function Checkout() {
             <OrderTotalPriceContainer>
               <div>
                 <p>Total de itens</p>
-                <p>R$ 29,70</p>
+                <p>R$ {totalPriceInReal}</p>
               </div>
-              <div>
+              {isDeliveryFeeMustAppear && <div>
                 <p>Entrega</p>
-                <p>R$ 3,50</p>
-              </div>
+                <p>R$ {deliveryFeeInReal}</p>
+              </div>}
               <div>
                 <p>Total</p>
-                <p>R$ 33,20</p>
+                <p>R$ {totalOrderInReal}</p>
               </div>
             </OrderTotalPriceContainer>
 
