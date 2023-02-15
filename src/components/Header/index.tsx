@@ -11,7 +11,7 @@ export function Header() {
   const { shoppingCartItems } = useContext(ShoppingCartContext);
   const { address } = useContext(OrderInfoContext);
 
-
+  const isAddressMustAppear = address.city !== '' && address.uf !== '';
   return (
     <HeaderContainer>
       <Content>
@@ -23,7 +23,7 @@ export function Header() {
         <RightHeaderDiv>
           <Location>
             <MapPin weight="fill" size={22} />
-            <span>{`${address.city}, ${address.uf}`}</span>
+            <span>{isAddressMustAppear? `${address.city}, ${address.uf}` : ''}</span>
           </Location>
 
           <NavLink to="/checkout" title="Checkout">
