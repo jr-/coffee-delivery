@@ -5,6 +5,7 @@ import { ShoppingCartContextProvider } from "./contexts/ShoppingCartContext";
 
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
+import { OrderInfoContextProvider } from './contexts/OrderInfoContext';
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
       <ShoppingCartContextProvider>
-        <Router />
+        <OrderInfoContextProvider>
+          <Router />
+        </OrderInfoContextProvider>
       </ShoppingCartContextProvider>
           
       </BrowserRouter>

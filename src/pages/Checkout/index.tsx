@@ -16,13 +16,21 @@ import {
 } from './styles'
 import { MapPinLine, CurrencyDollar, CreditCard, Money, Bank } from 'phosphor-react';
 import { CoffeeOrderCard } from './components/CoffeeOrderCard';
-import { Input } from '../../components/Input';
+// import { Input } from '../../components/Input';
 import { Select } from '../../components/Select';
-import { useContext, Fragment } from "react";
+import { useContext, Fragment, ChangeEvent } from "react";
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
+import { PaymentType } from '../../@types/Payment';
+import { OrderInfoContext } from '../../contexts/OrderInfoContext';
 
 export function Checkout() {
+
+  function handleSelectPayment(event: ChangeEvent<HTMLInputElement>) {
+    selectPayment(event.target.value as PaymentType);
+  }
+
   const { shoppingCartItems } = useContext(ShoppingCartContext);
+  const { paymentType, selectPayment } = useContext(OrderInfoContext);
   return (
     <Container>
       <Content>
@@ -38,13 +46,13 @@ export function Checkout() {
 
             </OrderAddressHeader>
             <InputsContainer>
+              {/* <Input/>
               <Input/>
               <Input/>
               <Input/>
               <Input/>
               <Input/>
-              <Input/>
-              <Input/>
+              <Input/> */}
             </InputsContainer>
 
           </OrderAddressContainer>
@@ -58,15 +66,33 @@ export function Checkout() {
             </OrderPaymentHeader>
 
             <PaymentOptions>
-              <Select>
+              <Select
+                checked={paymentType === "CREDIT_CARD"}
+                name="paymentType"
+                value="CREDIT_CARD"
+                onChange={handleSelectPayment}
+                required
+              >
                 <CreditCard />
                 <p>Cartão de crédito</p>
               </Select>
-              <Select>
+              <Select
+                checked={paymentType === "DEBIT_CARD"}
+                name="paymentType"
+                value="DEBIT_CARD"
+                onChange={handleSelectPayment}
+                required
+              >
                 <Bank />
                 <p>cartão de débito</p>
               </Select>
-              <Select>
+              <Select
+                checked={paymentType === "MONEY"}
+                name="paymentType"
+                value="MONEY"
+                onChange={handleSelectPayment}
+                required
+              >
                 <Money />
                 <p>dinheiro</p>
               </Select>
