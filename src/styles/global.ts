@@ -9,11 +9,11 @@ export const GlobalStyle = createGlobalStyle`
 
   :focus {
     outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme['green-500']};
+    box-shadow: 0 0 0 2px ${props => props.theme.baseBackground};
   }
 
   body {
-    background: #333;
+    background: ${props => props.theme.baseBackground};
     color: #FFF;
     background: ${(props) => props.theme['gray-900']};
     color: ${(props) => props.theme['gray-300']};
@@ -23,5 +23,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
+    line-height: 130%;
   }
 `

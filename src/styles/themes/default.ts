@@ -1,20 +1,19 @@
 export const defaultTheme = {
+  yellowDark: '#C47F17',
+  yellow: '#DBAC2C',
+  yellowLight: '#F1E9C9',
+  purpleDark: '#4B2995',
+  purple: '#8047F8',
+  purpleLight: '#EBE5F9',
+  
+  baseTitle: '#272221',
+  baseSubtitle: '#403937',
+  baseText: '#574F4D',
+  baseLabel: '#8D8686',
+  baseHover: '#D7D5D5',
+  baseButton: '#E6E5E5',
+  baseInput: '#EDEDED',
+  baseCard: '#F3F2F2',
+  baseBackground: '#FAFAFA',
   white: '#FFF',
-  'gray-100': '#E1E1E6',
-  'gray-300': '#C4C4CC',
-  'gray-400': '#8D8D99',
-  'gray-500': '#7C7C8A',
-  'gray-600': '#323238',
-  'gray-700': '#29292E',
-  'gray-800': '#202024',
-  'gray-900': '#121214',
-
-  'green-300': '#00B37E',
-  'green-500': '#00875F',
-  'green-700': '#015F43',
-
-  'red-500': '#AB222E',
-  'red-700': '#7A1921',
-
-  'yellow-500': '#FBA94C',
-}
+} as const
