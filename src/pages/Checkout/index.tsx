@@ -16,7 +16,7 @@ import {
 } from './styles'
 import { MapPinLine, CurrencyDollar, CreditCard, Money, Bank } from 'phosphor-react';
 import { CoffeeOrderCard } from './components/CoffeeOrderCard';
-// import { Input } from '../../components/Input';
+import { Input } from '../../components/Input';
 import { Select } from '../../components/Select';
 import { useContext, Fragment, ChangeEvent } from "react";
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
@@ -25,12 +25,19 @@ import { OrderInfoContext } from '../../contexts/OrderInfoContext';
 
 export function Checkout() {
 
+  const { shoppingCartItems } = useContext(ShoppingCartContext);
+  const { paymentType, selectPayment, address, changeAddressByInput } = useContext(OrderInfoContext);
+
   function handleSelectPayment(event: ChangeEvent<HTMLInputElement>) {
     selectPayment(event.target.value as PaymentType);
   }
 
-  const { shoppingCartItems } = useContext(ShoppingCartContext);
-  const { paymentType, selectPayment } = useContext(OrderInfoContext);
+  function handleChangeInput({
+    target: { name, value },
+  }: ChangeEvent<HTMLInputElement>) {
+    changeAddressByInput(name, value);
+  }
+
   return (
     <Container>
       <Content>
@@ -46,13 +53,63 @@ export function Checkout() {
 
             </OrderAddressHeader>
             <InputsContainer>
-              {/* <Input/>
-              <Input/>
-              <Input/>
-              <Input/>
-              <Input/>
-              <Input/>
-              <Input/> */}
+            <Input
+                label="CEP"
+                value={address.cep}
+                name="cep"
+                onChange={handleChangeInput}
+                maxLength={9}
+                required
+              />
+
+              <Input
+                label="Rua"
+                value={address.street}
+                name="street"
+                onChange={handleChangeInput}
+                required
+              />
+
+              <Input
+                label="Número"
+                value={address.number}
+                name="number"
+                onChange={handleChangeInput}
+                required
+              />
+
+              <Input
+                label="Complemento"
+                value={address.complement}
+                name="complement"
+                onChange={handleChangeInput}
+                isOptional
+              />
+
+              <Input
+                label="Bairro"
+                value={address.district}
+                name="district"
+                onChange={handleChangeInput}
+                required
+              />
+
+              <Input
+                label="Cidade"
+                value={address.city}
+                name="city"
+                onChange={handleChangeInput}
+                required
+              />
+
+              <Input
+                label="UF"
+                value={address.uf}
+                name="uf"
+                onChange={handleChangeInput}
+                maxLength={2}
+                required
+              />
             </InputsContainer>
 
           </OrderAddressContainer>
