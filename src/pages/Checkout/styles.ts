@@ -9,13 +9,66 @@ export const Content = styled.div`
   align-items: flex-start;
   gap: 2rem;
 `
-export const OrderInfos = styled.div``
-export const OrderAddressContainer = styled.div``
-export const OrderAddressHeader = styled.div``
+export const OrderInfos = styled.div`
+  width: 100%;
+  display: grid;
+  gap: .75rem;
+`
+export const OrderAddressContainer = styled.div`
+  background: ${props => props.theme.baseCard};
+`
+export const OrderAddressHeader = styled.div`
+
+`
 export const InputsContainer = styled.div``
-export const OrderPaymentContainer = styled.div``
-export const OrderPaymentHeader = styled.div``
-export const PaymentOptions = styled.div``
+export const OrderPaymentContainer = styled.div`
+  padding: 2.5rem;
+  background: ${props => props.theme.baseCard};
+  border-radius: 6px;
+`
+export const OrderPaymentHeader = styled.div`
+  svg {
+    color: ${props => props.theme.purple};
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: .5rem;
+  margin-bottom: 2.125rem;
+
+  div {
+    p:first-child {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+
+      display: flex;
+      align-items: center;
+
+      color: ${props => props.theme.baseSubtitle};
+    }
+
+    p:nth-child(2) {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 130%;
+      display: flex;
+      align-items: center;
+      margin-top: .125rem;
+      color: ${props => props.theme.baseText};
+    }
+  }
+`
+export const PaymentOptions = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+`
 export const OrderSummaryContent = styled.div`
   h2 {
     margin-bottom: 1rem;
