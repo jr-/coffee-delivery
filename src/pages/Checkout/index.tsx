@@ -79,7 +79,7 @@ export function Checkout() {
           <h2>Complete seu pedido</h2>
           <OrderAddressContainer>
             <OrderAddressHeader>
-              <MapPinLine />
+              <MapPinLine size={22}/>
               <div>
                 <p>Endereço de Entrega</p>
                 <p>Informe o endereço onde deseja receber seu pedido</p>

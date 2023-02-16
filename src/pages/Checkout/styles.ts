@@ -12,15 +12,68 @@ export const Content = styled.div`
 export const OrderInfos = styled.div`
   width: 100%;
   display: grid;
-  gap: .75rem;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-family: 'Baloo 2';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 130%;
+
+    display: flex;
+    align-items: center;
+
+    color: ${props => props.theme.baseSubtitle};
+  }
 `
 export const OrderAddressContainer = styled.div`
+  padding: 2.5rem;
   background: ${props => props.theme.baseCard};
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
 `
 export const OrderAddressHeader = styled.div`
+  svg {
+    color: ${props => props.theme.yellow};
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: .5rem;
+  margin-bottom: 2.125rem;
+
+  div {
+    p:first-child {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+
+      display: flex;
+      align-items: center;
+
+      color: ${props => props.theme.baseSubtitle};
+    }
+
+    p:nth-child(2) {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 130%;
+      display: flex;
+      align-items: center;
+      margin-top: .125rem;
+      color: ${props => props.theme.baseText};
+    }
+  }
+`
+export const InputsContainer = styled.div`
 
 `
-export const InputsContainer = styled.div``
 export const OrderPaymentContainer = styled.div`
   padding: 2.5rem;
   background: ${props => props.theme.baseCard};
