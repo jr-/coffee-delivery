@@ -1,7 +1,14 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`` 
-export const Content = styled.div``
+export const Content = styled.div`
+  margin: 0 auto; 
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: 1fr 28rem;
+  align-items: flex-start;
+  gap: 2rem;
+`
 export const OrderInfos = styled.div``
 export const OrderAddressContainer = styled.div``
 export const OrderAddressHeader = styled.div``
