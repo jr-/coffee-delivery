@@ -1,5 +1,5 @@
 import { Trash } from "phosphor-react";
-import { CoffeeOrderCardContainer, CoffeeImage, Actions, RemoveButton, Price  } from './styles';
+import { CoffeeOrderCardContainer, Actions, RemoveButton, Price, Info  } from './styles';
 import { CountButton } from "../../../../components/CountButton";
 import { ShoppingCartContext } from "../../../../contexts/ShoppingCartContext";
 import { useContext } from 'react';
@@ -21,23 +21,26 @@ export function CoffeeOrderCard({ data }: CoffeeOrderCardType) {
 
   return (
     <CoffeeOrderCardContainer>
-      <CoffeeImage><img src={image} /></CoffeeImage>
-      <div>
-        <p>{title}</p>
-        <Actions>
-          <CountButton
-            count={quantity}
-            onDecrement={() => decrementCoffeeInShoppingCart(id)}
-            onIncrement={() => incrementCoffeeInShoppingCart(id)} />
-          <RemoveButton
-            type="button"
-            onClick={() => deleteCoffeeInShoppingCartById(id)}
-          >
-            <Trash size={16} />
-            <span>Remover</span>
-          </RemoveButton>
-        </Actions>
-      </div>
+      <Info>
+      <img src={image} alt="" width={64} height={64} />
+        <div>
+          <p>{title}</p>
+          <Actions>
+            <CountButton
+              count={quantity}
+              onDecrement={() => decrementCoffeeInShoppingCart(id)}
+              onIncrement={() => incrementCoffeeInShoppingCart(id)}
+              size="sm" />
+            <RemoveButton
+              type="button"
+              onClick={() => deleteCoffeeInShoppingCartById(id)}
+            >
+              <Trash size={16} />
+              <span>Remover</span>
+            </RemoveButton>
+          </Actions>
+        </div>
+      </Info>
       <Price>
         R$ <strong>{priceInReal}</strong>
       </Price>
