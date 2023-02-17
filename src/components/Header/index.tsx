@@ -10,6 +10,7 @@ import { NavLink } from 'react-router-dom'
 export function Header() {
   const { shoppingCartItems } = useContext(ShoppingCartContext);
   const { address } = useContext(OrderInfoContext);
+  const addressString = `${address.city}, ${address.uf}`;
 
   const isAddressMustAppear = address.city !== '' && address.uf !== '';
   return (
@@ -23,7 +24,7 @@ export function Header() {
         <RightHeaderDiv>
           <Location>
             <MapPin weight="fill" size={22} />
-            <span>{isAddressMustAppear? `${address.city}, ${address.uf}` : ''}</span>
+            {isAddressMustAppear? <span>{addressString}</span> : null}
           </Location>
 
           <NavLink to="/checkout" title="Checkout">

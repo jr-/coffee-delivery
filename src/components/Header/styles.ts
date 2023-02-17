@@ -54,10 +54,8 @@ export const Location = styled.div`
   justify-content: center;
   align-items: center;
   padding: 8px;
-  gap: 4px;
 
-  width: 143px;
-  height: 38px;
+
   svg {
     color: ${(props) => props.theme.purple};
     
@@ -70,8 +68,7 @@ export const Location = styled.div`
     font-weight: 400;
     font-size: 14px;
     line-height: 130%;
-    width: 101px;
-    height: 18px;
+    margin-left: 4px;
   }
 `
 
@@ -83,7 +80,6 @@ export const RightHeaderDiv = styled.header`
   padding: 0px;
   gap: 12px;
 
-  width: 193px;
   height: 38px;
 `
 
