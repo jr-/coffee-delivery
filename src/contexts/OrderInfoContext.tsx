@@ -11,7 +11,7 @@ export interface OrderInfoContextType {
   paymentType: PaymentType | null;
   selectPayment: (payment: PaymentType) => void;
   address: AddressType;
-  changeAddressByInput: (inputName: string, value: string) => void;
+  changeAddressByKey: (inputName: string, value: string) => void;
 }
 
 export const OrderInfoContext = createContext({} as OrderInfoContextType)
@@ -34,7 +34,7 @@ export function OrderInfoContextProvider({
     uf: "",
   });
 
-  function changeAddressByInput(key: string, value: string) {
+  function changeAddressByKey(key: string, value: string) {
     setAddress((prevState) => {
       let newValue = value;
 
@@ -63,7 +63,7 @@ export function OrderInfoContextProvider({
         paymentType,
         selectPayment,
         address,
-        changeAddressByInput
+        changeAddressByKey
       }}
     >{children}</OrderInfoContext.Provider>
   )

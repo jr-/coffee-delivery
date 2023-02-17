@@ -26,7 +26,7 @@ import { OrderInfoContext } from '../../contexts/OrderInfoContext';
 export function Checkout() {
 
   const { shoppingCartItems } = useContext(ShoppingCartContext);
-  const { paymentType, selectPayment, address, changeAddressByInput } = useContext(OrderInfoContext);
+  const { paymentType, selectPayment, address, changeAddressByKey } = useContext(OrderInfoContext);
 
   function handleSelectPayment(event: ChangeEvent<HTMLInputElement>) {
     selectPayment(event.target.value as PaymentType);
@@ -35,7 +35,7 @@ export function Checkout() {
   function handleChangeInput({
     target: { name, value },
   }: ChangeEvent<HTMLInputElement>) {
-    changeAddressByInput(name, value);
+    changeAddressByKey(name, value);
   }
 
   function checkIfAddressHasBeenFilledIn() {
