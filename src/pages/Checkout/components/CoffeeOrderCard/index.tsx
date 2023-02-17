@@ -4,6 +4,7 @@ import { CountButton } from "../../../../components/CountButton";
 import { ShoppingCartContext } from "../../../../contexts/ShoppingCartContext";
 import { useContext } from 'react';
 import { ShoppingCartItemsType } from '../../../../@types/ShoppingCartItems';
+import { formatCentsInReal } from "../../../../utils/formatCentsInReal";
 
 interface CoffeeOrderCardType {
   data: ShoppingCartItemsType;
@@ -14,10 +15,7 @@ export function CoffeeOrderCard({ data }: CoffeeOrderCardType) {
   const { image, priceInCents, title, quantity, id } = data;
   const { decrementCoffeeInShoppingCart, incrementCoffeeInShoppingCart, deleteCoffeeInShoppingCartById } = useContext(ShoppingCartContext);
 
-  const priceInReal = new Intl.NumberFormat("pt-BR", {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  }).format(priceInCents / 100);
+  const priceInReal = formatCentsInReal(priceInCents); 
 
   return (
     <CoffeeOrderCardContainer>

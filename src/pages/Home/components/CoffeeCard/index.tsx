@@ -4,6 +4,7 @@ import { CountButton } from "../../../../components/CountButton";
 import { ShoppingCartContext } from "../../../../contexts/ShoppingCartContext";
 import { useState, useContext } from 'react';
 import { CoffeeType } from '../../../../@types/Coffee';
+import { formatCentsInReal } from '../../../../utils/formatCentsInReal';
 
 interface CoffeeProps {
   data: CoffeeType;
@@ -27,10 +28,7 @@ export function CoffeeCard({ data }: CoffeeProps) {
     setQuantity(0);
   }
 
-  const priceInReal = new Intl.NumberFormat("pt-BR", {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  }).format(priceInCents / 100);
+  const priceInReal = formatCentsInReal(priceInCents);
 
   return (
     <CoffeeCardContainer>

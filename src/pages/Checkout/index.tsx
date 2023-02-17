@@ -22,6 +22,7 @@ import { useContext, Fragment, ChangeEvent } from "react";
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import { PaymentType } from '../../@types/Payment';
 import { OrderInfoContext } from '../../contexts/OrderInfoContext';
+import { formatCentsInReal } from '../../utils/formatCentsInReal';
 
 export function Checkout() {
 
@@ -54,23 +55,14 @@ export function Checkout() {
     0
   );
 
-  const totalPriceInReal = new Intl.NumberFormat("pt-BR", {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  }).format(totalPriceInCents / 100);
+  const totalPriceInReal = formatCentsInReal(totalPriceInCents);
 
   const deliveryFeeInCents = checkIfAddressHasBeenFilledIn() ? 350 : 0;
-  const deliveryFeeInReal = new Intl.NumberFormat("pt-BR", {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  }).format(deliveryFeeInCents / 100);
+  const deliveryFeeInReal = formatCentsInReal(deliveryFeeInCents);
   const isDeliveryFeeMustAppear = deliveryFeeInCents > 0;
 
   const totalOrderInCents = totalPriceInCents + deliveryFeeInCents;
-  const totalOrderInReal = new Intl.NumberFormat("pt-BR", {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  }).format(totalOrderInCents / 100);
+  const totalOrderInReal = formatCentsInReal(totalOrderInCents);
 
   return (
     <Container>
