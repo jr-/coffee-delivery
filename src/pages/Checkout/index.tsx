@@ -18,15 +18,17 @@ import { MapPinLine, CurrencyDollar, CreditCard, Money, Bank } from 'phosphor-re
 import { CoffeeOrderCard } from './components/CoffeeOrderCard';
 import { Input } from '../../components/Input';
 import { Select } from '../../components/Select';
-import { useContext, Fragment, ChangeEvent } from "react";
+import { useContext, Fragment, ChangeEvent, FormEvent } from "react";
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import { PaymentType } from '../../@types/Payment';
 import { OrderInfoContext } from '../../contexts/OrderInfoContext';
 import { formatCentsInReal } from '../../utils/formatCentsInReal';
+import { useNavigate } from 'react-router-dom';
 
 export function Checkout() {
+  const navigation = useNavigate();
 
-  const { shoppingCartItems } = useContext(ShoppingCartContext);
+  const { shoppingCartItems, resetShoppingCart } = useContext(ShoppingCartContext);
   const { paymentType, selectPayment, address, changeAddressByKey } = useContext(OrderInfoContext);
 
   function handleSelectPayment(event: ChangeEvent<HTMLInputElement>) {
@@ -39,7 +41,7 @@ export function Checkout() {
     changeAddressByKey(name, value);
   }
 
-  function checkIfAddressHasBeenFilledIn() {
+  function checkIfAddressHasBeenFilledIn() : boolean {
     const hasAddressBeenFilled = Object.entries(address).every(
       ([key, value]) => {
         if (key === "complement") return true;
@@ -48,6 +50,16 @@ export function Checkout() {
     );
 
     return hasAddressBeenFilled;
+  }
+
+  function isValidOrder() : boolean {
+    return checkIfAddressHasBeenFilledIn() && totalPriceInCents > 0 && paymentType !== null;
+  }
+
+  function handleConfirmOrder(event: FormEvent<HTMLFormElement>) : void {
+    event.preventDefault();
+    navigation("/success");
+    resetShoppingCart();
   }
 
   const totalPriceInCents = shoppingCartItems.reduce(
@@ -66,7 +78,7 @@ export function Checkout() {
 
   return (
     <Container>
-      <Content>
+      <Content onSubmit={handleConfirmOrder}>
         <OrderInfos>
           <h2>Complete seu pedido</h2>
           <OrderAddressContainer>
@@ -208,7 +220,10 @@ export function Checkout() {
               </div>
             </OrderTotalPriceContainer>
 
-            <ConfirmOrderButton>
+            <ConfirmOrderButton
+              type="submit"
+              disabled={!isValidOrder()}
+            >
               confirmar pedido
             </ConfirmOrderButton>
           </OrderSummary>

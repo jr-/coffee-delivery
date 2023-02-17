@@ -12,6 +12,7 @@ export interface ShoppingCartContextType {
   decrementCoffeeInShoppingCart: (coffeeId: string) => void;
   incrementCoffeeInShoppingCart: (coffeeId: string) => void;
   deleteCoffeeInShoppingCartById: (coffeeId: string) => void;
+  resetShoppingCart:() => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType)
@@ -82,6 +83,10 @@ export function ShoppingCartContextProvider({
       prevState.filter((coffee) => coffee.id !== coffeeId)
     );
   }
+  
+  function resetShoppingCart(): void {
+    setShoppingCartItems([]);
+  }
 
   return (
     <ShoppingCartContext.Provider
@@ -90,7 +95,8 @@ export function ShoppingCartContextProvider({
         addCoffeeInShoppingCart,
         decrementCoffeeInShoppingCart,
         incrementCoffeeInShoppingCart,
-        deleteCoffeeInShoppingCartById
+        deleteCoffeeInShoppingCartById,
+        resetShoppingCart
 
       }}
     >{children}</ShoppingCartContext.Provider>

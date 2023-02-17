@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`` 
-export const Content = styled.div`
+export const Content = styled.form`
   margin: 0 auto; 
   width: min(1120px, 100%);
   display: grid;
@@ -189,7 +189,7 @@ export const OrderTotalPriceContainer = styled.div`
     }
   }
 `
-export const ConfirmOrderButton = styled.div`
+export const ConfirmOrderButton = styled.button`
   background: ${props => props.theme.yellow};
   display: grid;
   place-items: center;
