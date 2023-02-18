@@ -72,7 +72,32 @@ export const OrderAddressHeader = styled.div`
   }
 `
 export const InputsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 12.5rem 1fr 3.75rem;
+  gap: 1rem .75rem;
 
+  > div {
+    :nth-child(2) {
+      grid-column: 1 / 4;
+    }
+    
+    :nth-child(4) {
+      grid-column: 2 / 4;
+    }
+  }
+
+  @media (max-width: 570px) {
+    grid-template-columns: 1fr 3.75rem;
+
+    > div {
+      :nth-child(2),
+      :nth-child(3),
+      :nth-child(4),
+      :nth-child(5) {
+        grid-column: 1 / 3;
+      }
+    }
+  }
 `
 export const OrderPaymentContainer = styled.div`
   padding: 2.5rem;
