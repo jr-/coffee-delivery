@@ -74,6 +74,7 @@ export const Benefit = styled.div`
 
   &:nth-child(1) {
     svg {
+      color: ${props => props.theme.white};
       background: ${props => props.theme.yellowDark};
     }
 
@@ -81,6 +82,7 @@ export const Benefit = styled.div`
 
   &:nth-child(2) {
     svg {
+      color: ${props => props.theme.white};
       background: ${props => props.theme.baseText};
     }
 
@@ -88,6 +90,7 @@ export const Benefit = styled.div`
 
   &:nth-child(3) {
     svg {
+      color: ${props => props.theme.white};
       background: ${props => props.theme.yellow};
     }
 
@@ -95,6 +98,7 @@ export const Benefit = styled.div`
 
   &:nth-child(4) {
     svg {
+      color: ${props => props.theme.white};
       background: ${props => props.theme.purple};
     }
 

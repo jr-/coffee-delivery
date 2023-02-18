@@ -15,19 +15,19 @@ export function Home() {
             <p>Com o Coffee Delivery voce recebe seu cafe onde estiver, a qualquer hora</p>
             <BenefitsList>
               <Benefit>
-                <ShoppingCart size={32} />
+                <ShoppingCart size={32} weight='fill' />
                 <span>Compra simples e segura</span>
               </Benefit>
               <Benefit>
-                <Package size={32} />
+                <Package size={32} weight='fill'/>
                 <span>Embalagem mantem o cafe intacto</span>
               </Benefit>
               <Benefit>
-                <Timer size={32} />
+                <Timer size={32} weight='fill'/>
                 <span>Entrega rapida e rastreada</span>
               </Benefit>
               <Benefit>
-                <Coffee size={32} />
+                <Coffee size={32} weight='fill'/>
                 <span>O cafe chega fresquinho ate voce</span>
               </Benefit>
             </BenefitsList>
